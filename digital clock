@@ -1,0 +1,36 @@
+import time
+import os
+
+digits = {
+    '0': [" __ ", "|  |", "|__|"],
+    '1': ["    ", "   |", "   |"],
+    '2': [" __ ", " __|", "|__ "],
+    '3': [" __ ", " __|", " __|"],
+    '4': ["    ", "|__|", "   |"],
+    '5': [" __ ", "|__ ", " __|"],
+    '6': [" __ ", "|__ ", "|__|"],
+    '7': [" __ ", "   |", "   |"],
+    '8': [" __ ", "|__|", "|__|"],
+    '9': [" __ ", "|__|", " __|"],
+    ':': ["   ", " o ", " o "]
+}
+
+def display_time():
+    try:
+        while True:
+            current_time = time.strftime("%H:%M:%S")
+            lines = ["", "", ""]
+
+            for char in current_time:
+                for i in range(3):
+                    lines[i] += digits[char][i] + "  "
+            
+            os.system('cls' if os.name == 'nt' else 'clear')
+            for line in lines:
+                print(line)
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("\nClock stopped.")
+
+if __name__ == "__main__":
+    display_time()
